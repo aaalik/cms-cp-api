@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import indexController from './src/routes/index';
-// import userController from './src/routes/user';
+import userController from './src/routes/user';
 
 const errorHandler = require('errorhandler');
 
@@ -31,7 +31,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(morgan('dev'));
-// app.use(morgan('dev', {stream: accessLogStream}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
@@ -44,7 +43,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', indexController);
-// app.use('/api/user', userController);
+app.use('/api/user', userController);
 
 app.use(checkError);
 
