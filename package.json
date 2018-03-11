@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server-wrapper.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "alik",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "errorhandler": "^1.5.0",
     "express": "^4.16.2",
     "express-jwt": "^5.3.0",
@@ -18,7 +20,9 @@
     "pg": "^7.4.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "dotenv": "^5.0.1"
   }
 }
