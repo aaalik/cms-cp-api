@@ -11,7 +11,7 @@ const errorHandler = require('errorhandler');
 
 const app = express();
 
-const siteUrl = ['http://127.0.0.1:8080', undefined];
+const siteUrl = ['http://127.0.0.1:3000', undefined];
 
 const corsOptions = {
     origin(origin, callback) {
@@ -29,10 +29,15 @@ const corsOptions = {
  * @constant dev to see only http code response
  */
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 const checkError = (req, res, next) => {
     // console.log(res);

@@ -45,16 +45,12 @@ const insertRows = async(tableField, tableValue, setValue, response) => {
         await client.query('BEGIN');
         const baseSql = `insert into ${tableField} ${tableValue}`;
         const {rows} = await client.query(baseSql, setValue);
-        return (Object.assign({
-            client
-        }, rows));
+        return (Object.assign({client}, rows));
     } catch (err) {
         // it's will rollback and send Internal Server Error into client
         console.log(err);
         await client.query('ROLLBACK');
-        return response
-            .status(500)
-            .send(err);
+        return response.status(500).send(err);
     } finally {
         client.release();
     }
@@ -75,16 +71,12 @@ const updateRows = async(rawQuery, setValue, response) => {
         const baseSql = `UPDATE ${rawQuery}`;
         console.log(baseSql);
         const {rows} = await client.query(baseSql, setValue);
-        return (Object.assign({
-            client
-        }, rows));
+        return (Object.assign({ client}, rows));
     } catch (err) {
         // it's will rollback and send Internal Server Error into client
         console.log(err);
         await client.query('ROLLBACK');
-        return response
-            .status(500)
-            .send(err);
+        return response.status(500).send(err);
     } finally {
         client.release();
     }
