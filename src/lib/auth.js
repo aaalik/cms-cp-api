@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken';
 import Crypto from 'crypto-js';
 
 const getToken = () => jwt.sign(
-    {coba: 'yeahcoba'}, 
-    'alik', 
+    {name: 'yeahcoba'}, 
+    'secret', 
     {expiresIn: '1h'}
 );
 

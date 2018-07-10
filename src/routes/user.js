@@ -12,6 +12,13 @@ router.get('/', async(req, res) => {
     return res.send(rows);
 });
 
+router.get('/:id', async(req, res) => {
+    const {id} = req.params;
+    const {rows} = await db.query(`SELECT * FROM public.tb_user where id = $1`, [id]);
+    console.log(rows);
+    return res.send(rows);
+});
+
 router.post('/login', async(req, res) => {
     const {email, password} = req.body;
     const {rows} = await db.query(`SELECT * FROM public.tb_user where email = $1`, [email]);
